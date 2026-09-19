@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:wp="http://wordpress.org/export/1.2/">
+<channel>
+  <link>https://myblog.example.com</link>
+  <title>Test Blog</title>
+  <item>
+    <title>Hello world</title><dc:creator><![CDATA[alice]]></dc:creator>
+    <wp:post_type>post</wp:post_type><wp:status>publish</wp:status>
+    <content:encoded><![CDATA[<p>Welcome [gallery ids="1,2"] and [contact-form-7 id="4"]</p>]]></content:encoded>
+    <category><![CDATA[News]]></category><category domain="post_tag"><![CDATA[life]]></category>
+  </item>
+  <item>
+    <title>About</title><dc:creator><![CDATA[bob]]></dc:creator>
+    <wp:post_type>page</wp:post_type><wp:status>publish</wp:status>
+    <content:encoded><![CDATA[<p>About us [fluentform id="1"]</p>]]></content:encoded>
+  </item>
+  <item>
+    <title>Photo</title><dc:creator><![CDATA[alice]]></dc:creator>
+    <wp:post_type>attachment</wp:post_type><wp:status>inherit</wp:status>
+    <content:encoded><![CDATA[]]></content:encoded>
+  </item>
+  <item>
+    <title>Book</title><dc:creator><![CDATA[alice]]></dc:creator>
+    <wp:post_type>book</wp:post_type><wp:status>publish</wp:status>
+    <content:encoded><![CDATA[<p>A book [buy_button sku="x"]</p>]]></content:encoded>
+  </item>
+  <item>
+    <title>Draft</title><dc:creator><![CDATA[alice]]></dc:creator>
+    <wp:post_type>post</wp:post_type><wp:status>trash</wp:status>
+    <content:encoded><![CDATA[<p>deleted</p>]]></content:encoded>
+  </item>
+</channel>
+</rss>

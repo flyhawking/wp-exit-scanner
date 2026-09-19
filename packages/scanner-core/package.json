@@ -1,0 +1,20 @@
+{
+  "name": "@wp-exit-scanner/scanner-core",
+  "version": "0.1.0",
+  "description": "WordPress migration feasibility scanner core - the first half of the future migrator. MIT licensed.",
+  "type": "module",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "tsx --test test/*.test.ts",
+    "cli": "tsx src/cli.ts"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^4.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
