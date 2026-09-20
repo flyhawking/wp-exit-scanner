@@ -1,4 +1,4 @@
-import type { FetcherOptions, FetchedPage } from './types.js';
+import type { FetcherOptions, FetchedPage } from './types';
 
 const DEFAULTS = {
   timeoutMs: 10_000,

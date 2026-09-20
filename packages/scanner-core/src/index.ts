@@ -1,9 +1,11 @@
-import { Fetcher, crawlPages } from './fetcher.js';
-import { detectAcf, detectBuilders, detectTheme, extractPluginSlugs } from './fingerprints.js';
-import { probeRest } from './rest-probe.js';
-import { classifyPermalinks } from './url-classifier.js';
-import { evaluate } from './scoring.js';
-import type { FetcherOptions, ScanReport, ScanStats } from './types.js';
+import { Fetcher, crawlPages } from './fetcher';
+import { detectAcf, detectBuilders, detectTheme, extractPluginSlugs } from './fingerprints';
+import { probeRest } from './rest-probe';
+import { classifyPermalinks } from './url-classifier';
+import { evaluate } from './scoring';
+import type { FetcherOptions, ScanReport, ScanStats } from './types';
+
+export type { ScanReport, ScanStats, Finding, Light, MigrationPath } from './types';
 
 /** Orchestrator: URL mode scan. Everything public, read-only, rate-limited. */
 

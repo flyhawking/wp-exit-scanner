@@ -1,0 +1,17 @@
+{
+  "name": "wp-exit-scanner",
+  "private": true,
+  "version": "0.1.0",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "test": "npm run test -w @wp-exit-scanner/scanner-core",
+    "dev": "npm run dev -w @wp-exit-scanner/web",
+    "build": "npm run build -w @wp-exit-scanner/web",
+    "start": "npm run start -w @wp-exit-scanner/web",
+    "cli": "npm run cli -w @wp-exit-scanner/scanner-core --"
+  }
+}

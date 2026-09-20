@@ -1,7 +1,7 @@
 #!/usr/bin/env tsx
 /** CLI harness: scan a site and print the report. Usage: tsx src/cli.ts <url> [--json] [--fast] [--pages N] */
-import { scanSite } from './index.js';
-import { parseWxr } from './wxr-parser.js';
+import { scanSite } from './index';
+import { parseWxr } from './wxr-parser';
 import { readFileSync } from 'node:fs';
 
 const args = process.argv.slice(2);
@@ -16,14 +16,14 @@ if (!url) {
   process.exit(1);
 }
 
-async function main() {
-  if (url.endsWith('.xml') || url.endsWith('.wxr')) {
-    const xml = readFileSync(url, 'utf8');
+async function main(target: string) {
+  if (target.endsWith('.xml') || target.endsWith('.wxr')) {
+    const xml = readFileSync(target, 'utf8');
     const summary = parseWxr(xml);
     console.log(json ? JSON.stringify(summary, null, 2) : formatWxr(summary));
     return;
   }
-  const report = await scanSite(url, {
+  const report = await scanSite(target, {
     maxPages,
     delayMs: fast ? 250 : 1000,
     concurrency: fast ? 8 : 5,
@@ -62,7 +62,7 @@ function formatWxr(s: ReturnType<typeof parseWxr>): string {
   ].join('\n');
 }
 
-main().catch((e) => {
+main(url).catch((e) => {
   console.error('Scan failed:', e);
   process.exit(1);
 });

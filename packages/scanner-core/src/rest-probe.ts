@@ -1,4 +1,4 @@
-import { Fetcher } from './fetcher.js';
+import { Fetcher } from './fetcher';
 
 /** Probe public WP REST API endpoints. Read-only, per_page=1, count via X-WP-Total headers. */
 

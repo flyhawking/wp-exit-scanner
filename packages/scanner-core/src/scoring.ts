@@ -1,5 +1,5 @@
-import type { Finding, Light, MigrationPath, ScanStats } from './types.js';
-import { categorizePlugins } from './fingerprints.js';
+import type { Finding, Light, MigrationPath, ScanStats } from './types';
+import { categorizePlugins } from './fingerprints';
 
 /** Rule-table scoring engine. Base 100, penalties per the public rule sheet. Red-flag categories force a red light. */
 
@@ -12,6 +12,7 @@ export interface RuleContext {
   url: { structure: string; hasQueryPermalinks: boolean };
   mediaCount: number | null;
   contentCount: number | null;
+  cptCount: number;
 }
 
 export interface ScoreResult {
