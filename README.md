@@ -2,6 +2,12 @@
 
 **"Find out if you can leave WordPress in 30 seconds — without losing a single URL."**
 
+[![Live demo: wpexit.dev](https://img.shields.io/badge/▶_live_demo-wpexit.dev-22c55e?style=for-the-badge)](https://wpexit.dev)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/flyhawking/wp-exit-scanner?style=for-the-badge&color=yellow)](https://github.com/flyhawking/wp-exit-scanner/stargazers)
+
+> ### 👉 Try it now: **[wpexit.dev](https://wpexit.dev)** — paste a URL, get a score in 30 seconds. Free, no signup.
+
 A free, open-source migration feasibility scanner for WordPress sites. Enter a URL, get a report:
 can you migrate to static hosting with **zero URL changes**, and what will break?
 
@@ -10,7 +16,19 @@ can you migrate to static hosting with **zero URL changes**, and what will break
 
 ## Status
 
-Week 1 build: `packages/scanner-core` — URL mode + WXR mode, rule-based scoring, CLI harness. Web UI next.
+**Live and usable today → [wpexit.dev](https://wpexit.dev)** (scan, report page, waitlist, public stats).
+
+- `packages/scanner-core` — URL mode + WXR mode, rule-based scoring ✅
+- `apps/web` — Next.js 15 + Cloudflare Workers (OpenNext), KV report storage + D1 waitlist ✅
+- You do **not** need to build or run anything to use it — just open the site.
+  Build locally only if you want to run the scanner against your own machine.
+
+## Try it without installing anything
+
+Open **[wpexit.dev](https://wpexit.dev)** and paste your site URL. You get a shareable report link,
+a 0–100 score, and a concrete list of what breaks under "zero URL change" migration.
+
+Want it on your own machine? See **Usage (CLI)** below — no Cloudflare account required.
 
 ## Usage (CLI)
 
@@ -42,6 +60,19 @@ E-commerce/membership sites get an honest "stay on WordPress" referral, not a sa
 Polite crawler: robots.txt respected, custom UA, ≤50 pages/site, ≥1s delay, 2MB/page cap.
 No content is stored — only aggregate metrics. Reports expire in 7 days.
 
+## Hosted version
+
+The scanner at **[wpexit.dev](https://wpexit.dev)** is the same code in this repo, running on
+Cloudflare Workers (KV for reports, D1 for the waitlist). The hosted version exists so you don't
+have to deploy anything to get an answer; the core scanning logic is MIT and fully in
+[`packages/scanner-core`](packages/scanner-core).
+
 ## License
 
 MIT
+
+---
+
+Not affiliated with, or endorsed by, the WordPress Foundation or Automattic. "WordPress" is a
+registered trademark of the WordPress Foundation and is used here only to describe what this tool
+scans. Built by [@flyhawking](https://github.com/flyhawking).
