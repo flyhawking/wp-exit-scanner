@@ -1,8 +1,12 @@
+import Link from 'next/link';
 import { ScanFlow } from '../components/ScanFlow';
 import { reportStore } from '../lib/store';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Home() {
-  const { scans } = await reportStore.stats();
+  const { scans, canMigrate } = await reportStore.stats();
+  const pct = scans > 0 ? Math.round((canMigrate / scans) * 100) : 0;
   return (
     <div className="wrap">
       <section className="hero">
@@ -21,11 +25,16 @@ export default async function Home() {
 
       <ScanFlow />
 
-      {scans > 0 ? <p className="stats-line">{scans} sites scanned so far.</p> : null}
+      {scans > 0 ? (
+        <p className="stats-line">
+          {scans.toLocaleString('en-US')} sites scanned · {pct}% can migrate to static today ·{' '}
+          <Link href="/stats">see the data</Link>
+        </p>
+      ) : null}
 
       <footer className="footer">
         Read-only scan of public pages only · robots.txt respected · reports expire in 7 days ·
-        Is this your site and you want it removed? <a href="mailto:hello@wpexit.scanner">Contact us</a> ·
+        Is this your site and you want it removed? <a href="mailto:hello@wpexit.dev">Contact us</a> ·
         <a href="https://github.com/flyhawking/wp-exit-scanner"> open source (MIT)</a>
       </footer>
     </div>

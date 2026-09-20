@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://wpexit.dev'),
   title: 'WP Exit Scanner — can you leave WordPress without losing a single URL?',
   description:
     'Free, open-source migration feasibility scan. Enter your WordPress site URL and get a report in 60 seconds: what breaks, what it costs, and whether zero-URL-change static hosting works for you.',
@@ -9,6 +10,15 @@ export const metadata: Metadata = {
     title: 'WP Exit Scanner',
     description: 'Can you leave WordPress without losing a single URL? Free feasibility scan.',
     type: 'website',
+    siteName: 'WP Exit Scanner',
+    url: '/',
+    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'WP Exit Scanner' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'WP Exit Scanner',
+    description: 'Can you leave WordPress without losing a single URL? Free feasibility scan.',
+    images: ['/og.png'],
   },
 };
 

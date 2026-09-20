@@ -1,0 +1,37 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "wpexit",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-09-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "kv_namespaces": [
+    {
+      "binding": "REPORTS",
+      "id": "PLACEHOLDER_KV_ID"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "wpexit",
+      "database_id": "PLACEHOLDER_D1_ID"
+    }
+  ],
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "wpexit"
+    }
+  ],
+  "routes": [
+    { "pattern": "wpexit.dev", "custom_domain": true },
+    { "pattern": "www.wpexit.dev", "custom_domain": true }
+  ]
+}

@@ -12,6 +12,11 @@
     "dev": "npm run dev -w @wp-exit-scanner/web",
     "build": "npm run build -w @wp-exit-scanner/web",
     "start": "npm run start -w @wp-exit-scanner/web",
-    "cli": "npm run cli -w @wp-exit-scanner/scanner-core --"
+    "cli": "npm run cli -w @wp-exit-scanner/scanner-core --",
+    "deploy": "npm run deploy -w @wp-exit-scanner/web"
+  },
+  "overrides": {
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
   }
 }

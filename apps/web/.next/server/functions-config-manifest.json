@@ -1,1 +1,9 @@
-{"version":1,"functions":{"/api/scan":{"maxDuration":120},"/api/subscribe":{},"/report/[id]":{}}}
+{
+  "version": 1,
+  "functions": {
+    "/api/subscribe": {},
+    "/api/scan": {
+      "maxDuration": 120
+    }
+  }
+}

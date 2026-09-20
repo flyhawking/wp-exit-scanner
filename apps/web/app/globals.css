@@ -103,3 +103,19 @@ a { color: var(--accent); }
 .stats-line { text-align: center; color: var(--muted); font-size: 13px; margin-top: 18px; }
 
 .notfound { text-align: center; margin-top: 80px; color: var(--muted); }
+
+/* aggregate stats page */
+.score-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 28px 0 8px; }
+.stat-card { border: 1px solid var(--border); border-radius: 12px; padding: 18px 10px; text-align: center; }
+.stat-num { font-size: 28px; font-weight: 500; }
+.stat-label { color: var(--muted); font-size: 12px; margin-top: 4px; }
+.blocker-list { list-style: none; padding: 0; margin: 12px 0 16px; }
+.blocker-list li { display: flex; align-items: center; gap: 10px; padding: 7px 0; }
+.blocker-name { width: 116px; font-size: 14px; }
+.blocker-bar { flex: 1; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+.blocker-bar span { display: block; height: 100%; background: var(--accent); }
+.blocker-count { width: 40px; text-align: right; color: var(--muted); font-size: 13px; }
+.muted { color: var(--muted); font-size: 14px; }
+@media (max-width: 560px) {
+  .score-grid { grid-template-columns: 1fr; }
+}
