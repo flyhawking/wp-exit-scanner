@@ -14,14 +14,14 @@
   "kv_namespaces": [
     {
       "binding": "REPORTS",
-      "id": "PLACEHOLDER_KV_ID"
+      "id": "4214d5fd503e4269898221ea21243df2"
     }
   ],
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "wpexit",
-      "database_id": "PLACEHOLDER_D1_ID"
+      "database_id": "b935b572-5b90-4b60-9223-a6aea824da9b"
     }
   ],
   "services": [

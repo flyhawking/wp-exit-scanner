@@ -1,8 +1,8 @@
 {
   "/_not-found/page": "/_not-found",
-  "/api/scan/route": "/api/scan",
   "/api/subscribe/route": "/api/subscribe",
-  "/stats/page": "/stats",
+  "/api/scan/route": "/api/scan",
   "/report/[id]/page": "/report/[id]",
+  "/stats/page": "/stats",
   "/page": "/"
 }

@@ -8,6 +8,7 @@ export declare class Fetcher {
     fetchPage(url: string): Promise<FetchedPage>;
     /** Naive robots.txt check: only the `User-agent: *` group, prefix matching. */
     isAllowed(url: string): Promise<boolean>;
+    /** Rate-limit gate. Sleeps via a plain promise — Atomics.wait is forbidden on the Workers main thread. */
     private throttle;
 }
 /** Crawl a bounded set of pages politely (concurrency + robots). */

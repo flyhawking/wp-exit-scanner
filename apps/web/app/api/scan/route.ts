@@ -38,6 +38,10 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ id, report });
   } catch (err) {
     console.error('[scan] failed', err);
-    return NextResponse.json({ error: 'Scan failed. The site may be unreachable or heavily protected - try the WXR upload mode instead.' }, { status: 500 });
+    const detail = err instanceof Error ? err.message : String(err);
+    return NextResponse.json(
+      { error: `Scan failed: ${detail}` },
+      { status: 500 },
+    );
   }
 }

@@ -18,7 +18,7 @@ class Fetcher {
         this.opts = { ...DEFAULTS, ...opts };
     }
     async fetchPage(url) {
-        const gate = this.throttle();
+        await this.throttle();
         try {
             const ctrl = new AbortController();
             const timer = setTimeout(() => ctrl.abort(), this.opts.timeoutMs);
@@ -28,7 +28,7 @@ class Fetcher {
                 headers: { 'user-agent': this.opts.userAgent, accept: 'text/html,application/json;q=0.9,*/*;q=0.8' },
             });
             clearTimeout(timer);
-            const cap = Math.min(gate.maxBytes, this.opts.maxBytes);
+            const cap = this.opts.maxBytes;
             let text = '';
             if (res.body) {
                 const reader = res.body.getReader();
@@ -78,13 +78,13 @@ class Fetcher {
         const path = new URL(url).pathname;
         return !rules.some((prefix) => path.startsWith(prefix));
     }
-    throttle() {
+    /** Rate-limit gate. Sleeps via a plain promise — Atomics.wait is forbidden on the Workers main thread. */
+    async throttle() {
         const now = Date.now();
         const wait = this.lastStart + this.opts.delayMs - now;
         this.lastStart = Math.max(now, this.lastStart + this.opts.delayMs);
         if (wait > 0)
-            Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, wait);
-        return { maxBytes: this.opts.maxBytes };
+            await new Promise((resolve) => setTimeout(resolve, wait));
     }
 }
 exports.Fetcher = Fetcher;
