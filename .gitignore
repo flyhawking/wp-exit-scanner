@@ -10,3 +10,6 @@ next-env.d.ts
 .wrangler/
 .dev.vars
 .env*.local
+
+# TS incremental build cache
+*.tsbuildinfo
