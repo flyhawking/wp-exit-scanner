@@ -11,6 +11,10 @@
   "observability": {
     "enabled": true
   },
+  "vars": {
+    "RESEND_FROM": "WP Exit Scanner <hello@wpexit.dev>",
+    "RESEND_REPLY_TO": "flyhawking@gmail.com"
+  },
   "kv_namespaces": [
     {
       "binding": "REPORTS",

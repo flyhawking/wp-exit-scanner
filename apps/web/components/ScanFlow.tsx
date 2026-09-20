@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import type { ScanReport } from './scan-types';
 import { ScoreCard, Findings, CtaCard } from './ReportView';
+import { track, hostOf } from '../lib/track';
 
 const STEPS = [
   'Fetching public pages…',
@@ -38,6 +39,8 @@ export function ScanFlow() {
     setProgress(6);
     setError('');
     setResult(null);
+    const started = Date.now();
+    track('scan_started', { host: hostOf(url) });
     try {
       const res = await fetch('/api/scan', {
         method: 'POST',
@@ -49,10 +52,19 @@ export function ScanFlow() {
       setProgress(100);
       setResult(body);
       setPhase('done');
-      window.posthog?.capture('scan_success', { path: body.report.path, score: body.report.score });
+      track('scan_succeeded', {
+        host: hostOf(url),
+        light: body.report.light,
+        path: body.report.path,
+        score: body.report.score,
+        is_wordpress: body.report.isWordPress,
+        duration_ms: Date.now() - started,
+      });
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Scan failed');
+      const message = err instanceof Error ? err.message : 'Scan failed';
+      setError(message);
       setPhase('error');
+      track('scan_failed', { host: hostOf(url), message });
     }
   }
 

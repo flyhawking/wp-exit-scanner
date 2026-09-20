@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { ScanReport } from './scan-types';
+import { track } from '../lib/track';
 
 /** Shared report renderer - used inline on the landing page (client) and on /report/[id] (server). */
 
@@ -79,18 +80,31 @@ export function EmailForm({ reportId, score, path }: { reportId: string; score: 
   const [email, setEmail] = useState('');
   const [state, setState] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
 
+  // Top of the funnel for the email capture: did they ever see the offer?
+  useEffect(() => {
+    track('cta_shown', { path, score, report_id: reportId });
+  }, [path, score, reportId]);
+
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     setState('sending');
+    track('waitlist_submitted', { path, score, report_id: reportId });
     const res = await fetch('/api/subscribe', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ email, reportId, score, path }),
     });
-    setState(res.ok ? 'done' : 'error');
+    if (res.ok) {
+      const data = (await res.json().catch(() => ({}))) as { emailed?: boolean };
+      setState('done');
+      track('waitlist_confirmed', { path, score, report_id: reportId, emailed: data.emailed ?? false });
+    } else {
+      setState('error');
+      track('waitlist_failed', { path, score, report_id: reportId, status: res.status });
+    }
   }
 
-  if (state === 'done') return <p className="cta-ok">You are on the list. Watch your inbox.</p>;
+  if (state === 'done') return <p className="cta-ok">You are on the list. Check your inbox for the confirmation.</p>;
 
   return (
     <form onSubmit={submit}>
